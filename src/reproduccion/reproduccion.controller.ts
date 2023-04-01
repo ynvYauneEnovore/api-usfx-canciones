@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ReproduccionService } from './reproduccion.service';
 import { CreateReproduccionDto } from './dto/create-reproduccion.dto';
@@ -39,14 +40,15 @@ export class ReproduccionController {
   @Patch(':id')
   @ApiOkResponse({ type: ReproduccionEntity })
   update(
-    @Param('id') id: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updateReproduccionDto: UpdateReproduccionDto,
   ) {
-    return this.reproduccionService.update(+id, updateReproduccionDto);
+    return this.reproduccionService.update(id, updateReproduccionDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.reproduccionService.remove(+id);
+  @ApiOkResponse()
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.reproduccionService.remove(id);
   }
 }

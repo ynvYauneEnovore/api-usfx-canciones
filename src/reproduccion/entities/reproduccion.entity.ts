@@ -14,7 +14,7 @@ export class ReproduccionEntity {
   @Column({ length: 100 })
   nombre: string;
 
-  @Column()
+  @Column({ name: 'id_usuario' })
   idUsuario: number;
 
   @CreateDateColumn({ name: 'fecha_creacion' })
