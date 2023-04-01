@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 
-export class CreateCancionDto {
+export class CreateCancionesDto {
 
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo id no debe ser vacío' })

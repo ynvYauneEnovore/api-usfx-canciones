@@ -13,7 +13,7 @@ import { UpdateReproduccionDto } from './dto/update-reproduccion.dto';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ReproduccionEntity } from './entities/reproduccion.entity';
 
-@ApiTags('reproduccion')
+@ApiTags('Reproducción')
 @Controller('reproduccion')
 export class ReproduccionController {
   constructor(private readonly reproduccionService: ReproduccionService) {}

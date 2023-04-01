@@ -7,46 +7,46 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { ReproduccionService } from './canciones.service';
-import { CreateReproduccionDto } from './dto/create-cancion.dto';
-import { UpdateReproduccionDto } from './dto/update-cancion.dto';
+import { CancionesService } from './canciones.service';
+import { CreateCancionesDto } from './dto/create-canciones.dto';
+import { UpdateCancionesDto } from './dto/update-canciones.dto';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
-import { ReproduccionEntity } from './entities/cancion.entity';
+import { CancionesEntity } from './entities/canciones.entity';
 
-@ApiTags('reproduccion')
-@Controller('reproduccion')
-export class ReproduccionController {
-  constructor(private readonly reproduccionService: ReproduccionService) {}
+@ApiTags('Canciones')
+@Controller('canciones')
+export class CancionesController {
+  constructor(private readonly cancionesService: CancionesService) {}
 
   @Post()
-  @ApiCreatedResponse({ type: ReproduccionEntity })
-  create(@Body() createReproduccionDto: CreateReproduccionDto) {
-    return this.reproduccionService.create(createReproduccionDto);
+  @ApiCreatedResponse({ type: CancionesEntity })
+  create(@Body() createCancionesDto: CreateCancionesDto) {
+    return this.cancionesService.create(createCancionesDto);
   }
 
   @Get()
-  @ApiOkResponse({ type: ReproduccionEntity, isArray: true })
+  @ApiOkResponse({ type: CancionesEntity, isArray: true })
   findAll() {
-    return this.reproduccionService.findAll();
+    return this.cancionesService.findAll();
   }
 
   @Get(':id')
-  @ApiOkResponse({ type: ReproduccionEntity })
+  @ApiOkResponse({ type: CancionesEntity })
   findOne(@Param('id') id: string) {
-    return this.reproduccionService.findOne(+id);
+    return this.cancionesService.findOne(+id);
   }
 
   @Patch(':id')
-  @ApiOkResponse({ type: ReproduccionEntity })
+  @ApiOkResponse({ type: CancionesEntity })
   update(
     @Param('id') id: string,
-    @Body() updateReproduccionDto: UpdateReproduccionDto,
+    @Body() updateCancionesDto: UpdateCancionesDto,
   ) {
-    return this.reproduccionService.update(+id, updateReproduccionDto);
+    return this.cancionesService.update(+id, updateCancionesDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.reproduccionService.remove(+id);
+    return this.cancionesService.remove(+id);
   }
 }

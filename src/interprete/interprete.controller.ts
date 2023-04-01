@@ -14,7 +14,7 @@ import { UpdateInterpreteDto } from './dto/update-interprete.dto';
 import { InterpreteService } from './interprete.service';
 import { InterpreteEntity } from './entities/interprete.entity';
 
-@ApiTags('interpretes')
+@ApiTags('Intérpretes')
 @Controller('interpretes')
 export class InterpreteController {
   constructor(private readonly interpreteService: InterpreteService) {}

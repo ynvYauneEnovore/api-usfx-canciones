@@ -14,9 +14,10 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('SIS257')
     .setDescription('API de la materia Desarrollo Aplicación INT/Internet II')
-    .setVersion('2.0')
-    .addTag('interpretes')
-    .addTag('reproduccion')
+
+    .setVersion('5.3.1')
+    .addTag('DEV: Yovan Ramón Yaune Enovore')
+
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('apidoc', app, document);

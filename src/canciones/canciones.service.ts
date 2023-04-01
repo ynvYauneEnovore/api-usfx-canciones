@@ -5,34 +5,36 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateCancionDto } from './dto/create-cancion.dto';
-import { UpdateCancionDto } from './dto/update-cancion.dto';
-import { CancionesEntity } from './entities/cancion.entity';
+import { CreateCancionesDto } from './dto/create-canciones.dto';
+import { UpdateCancionesDto } from './dto/update-canciones.dto';
+import { CancionesEntity } from './entities/canciones.entity';
 
 @Injectable()
-export class ReproduccionService {L
+export class CancionesService {L
   constructor(
     @InjectRepository(CancionesEntity)
     private cancionesRepository: Repository<CancionesEntity>,
   ) {}
 
-  async create(CreateCancionDto: CreateCancionDto): Promise<CancionesEntity> {
+  async create(
+    CreateCancionesDto: CreateCancionesDto,
+  ): Promise<CancionesEntity> {
     const existe = await this.cancionesRepository.findOneBy({
-      idListaReproduccion: CreateCancionDto.idListaReproduccion,
-      idCancion: CreateCancionDto.idCancion,
-      fecha: CreateCancionDto.fecha,
+      idListaReproduccion: CreateCancionesDto.idListaReproduccion,
+      idCancion: CreateCancionesDto.idCancion,
+      fecha: CreateCancionesDto.fecha,
     });
 
     if (existe) {
       throw new ConflictException(
-        `El intérprete ${CreateCancionDto.idListaReproduccion} ya existe.`,
+        `El intérprete ${CreateCancionesDto.idListaReproduccion} ya existe.`,
       );
     }
 
     return this.cancionesRepository.save({
-      idListaReproduccion: CreateCancionDto.idListaReproduccion,
-      idCancion: CreateCancionDto.idCancion,
-      fecha: CreateCancionDto.fecha,
+      idListaReproduccion: CreateCancionesDto.idListaReproduccion,
+      idCancion: CreateCancionesDto.idCancion,
+      fecha: CreateCancionesDto.fecha,
     });
   }
 
@@ -41,24 +43,24 @@ export class ReproduccionService {L
   }
 
   async findOne(id: number): Promise<CancionesEntity> {
-    const interprete = await this.cancionesRepository.findOneBy({id});
+    const canciones = await this.cancionesRepository.findOneBy({id});
 
-    if (!interprete) {
+    if (!canciones) {
       throw new NotFoundException(`El intérprete ${id} no existe.`);
     }
 
-    return interprete;
+    return canciones;
   }
 
-  async update(id: number, updateCancionesDto: UpdateCancionDto) {
-    const interprete = await this.cancionesRepository.findOneBy({id});
+  async update(id: number, updateCancionesDto: UpdateCancionesDto) {
+    const canciones = await this.cancionesRepository.findOneBy({id});
 
-    if (!interprete) {
+    if (!canciones) {
       throw new NotFoundException(`El intérprete ${id} no existe.`);
     }
 
-    const interpreteUpdate = Object.assign(interprete, updateCancionesDto);
-    return this.cancionesRepository.save(interpreteUpdate);
+    const cancionesUpdate = Object.assign(canciones, updateCancionesDto);
+    return this.cancionesRepository.save(cancionesUpdate);
   }
 
   async remove(id: number) {

@@ -5,7 +5,7 @@ import { UpdateGeneroDto } from './dto/update-genero.dto';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { GeneroEntity } from './entities/genero.entity';
 
-@ApiTags('generos')
+@ApiTags('Géneros')
 @Controller('generos')
 export class GeneroController {
   constructor(private readonly generoService: GeneroService) {}
