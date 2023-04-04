@@ -6,6 +6,8 @@ import { GeneroModule } from './genero/genero.module';
 import { AlbumModule } from './album/album.module';
 import { ReproduccionModule } from './reproduccion/reproduccion.module';
 import { CancionesModule } from './canciones/canciones.module';
+import { UsuarioModule } from './usuario/usuario.module';
+
 
 @Module({
   imports: [
@@ -26,6 +28,7 @@ import { CancionesModule } from './canciones/canciones.module';
     AlbumModule,
     ReproduccionModule,
     CancionesModule,
+    UsuarioModule,
   ],
 })
 export class AppModule {}
